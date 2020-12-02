@@ -195,7 +195,7 @@ namespace MathForGames
             Goal actor = new Goal(10, 20, Color.GREEN, '■', ConsoleColor.Green);
             Enemy enemy = new Enemy(1, 1, Color.GREEN, '■', ConsoleColor.Green);
             Player player = new Player(1, 1, Color.BLUE, '@', ConsoleColor.Red);
-            Bullet bullet = new Bullet(1, 1, Color.BLUE, '@', ConsoleColor.Red);
+            Sword bullet = new Sword(1, 1, Color.BLUE, '@', ConsoleColor.Red);
 
             enemy.Target = player;
             player.Speed = 5;
