@@ -16,11 +16,24 @@ namespace MathForGames
         private Actor _target;
         private Color _alertColor;
         private Sprite _sprite;
+        private float _speed;
 
         public Actor Target
         {
             get { return _target; }
             set { _target = value; }
+        }
+
+        public float Speed
+        {
+            get
+            {
+                return _speed;
+            }
+            set
+            {
+                _speed = value;
+            }
         }
 
         /// <param name="x">Position on the x axis</param>

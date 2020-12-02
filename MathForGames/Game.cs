@@ -192,26 +192,40 @@ namespace MathForGames
             Scene scene2 = new Scene();
 
             //Create the actors to add to our scene
-            Goal actor = new Goal(10, 20, Color.GREEN, '■', ConsoleColor.Green);
-            Enemy enemy = new Enemy(20, 20, Color.GREEN, '■', ConsoleColor.Green);
+            Goal goal = new Goal(10, 20, Color.GREEN, '■', ConsoleColor.Green);
+            Enemy enemy1 = new Enemy(20, 20, Color.GREEN, '■', ConsoleColor.Green);
+            Enemy enemy2 = new Enemy(25, 25, Color.GREEN, '■', ConsoleColor.Green);
+            Enemy enemy3 = new Enemy(30, 30, Color.GREEN, '■', ConsoleColor.Green);
             Player player = new Player(1, 1, Color.BLUE, '@', ConsoleColor.Red);
             Sword sword = new Sword(1, 1, Color.BLUE, '@', ConsoleColor.Red);
 
-            enemy.Target = player;
+            enemy1.Target = player;
+            enemy1.Speed = 1;
+            enemy2.Speed = 1;
+            enemy3.Speed = 1;
             player.Speed = 5;
-            enemy.SetTranslation(new Vector2(5, 0));
+            enemy1.SetTranslation(new Vector2(5, 5));
+            enemy2.SetTranslation(new Vector2(10, 10));
+            enemy3.SetTranslation(new Vector2(15, 15));
             player.SetTranslation(new Vector2(5, 0));
+
             player.AddChild(sword);
 
             //player.SetRotation(1);
             player.SetScale(2, 2);
-            enemy.SetScale(1, 1);
+            enemy1.SetScale(1, 1);
+            enemy2.SetScale(1, 1);
+            enemy3.SetScale(1, 1);
             //Add actors to the scenes
             scene1.AddActor(player);
-            scene1.AddActor(actor);
+            scene1.AddActor(goal);
             scene1.AddActor(sword);
-            scene1.AddActor(enemy);
+            scene1.AddActor(enemy1);
+            scene1.AddActor(enemy2);
+            scene1.AddActor(enemy3);
             scene2.AddActor(player);
+
+            enemy1.Target = player;
 
             //Sets the starting scene index and adds the scenes to the scenes array
             int startingSceneIndex = 0;
