@@ -49,6 +49,11 @@ namespace MathForGames
             _sprite = new Sprite("Images/barrelBlue.png");
         }
 
+        private void Bullet()
+        {
+            
+        }
+
         public override void Update(float deltaTime)
         {
             //Gets the player's input to determine which direction the actor will move in on each axis 
@@ -59,7 +64,7 @@ namespace MathForGames
 
             if (Raylib.IsKeyPressed(KeyboardKey.KEY_SPACE))
             {
-                Raylib.DrawText("You Win!!\nPress Esc to quit", 100, 100, 100, Color.BLUE);
+                Bullet();
             }
 
 
@@ -69,7 +74,7 @@ namespace MathForGames
             base.Update(deltaTime);
         }
 
-
+        
 
         public override void Draw()
         {
