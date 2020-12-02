@@ -82,16 +82,16 @@ namespace MathForGames
         public override void OnCollision(Actor other)
         {
             if (other is Player)
-                GameManager.onWin?.Invoke();
+                GameManager.onLose?.Invoke();
             if (other is Sword)
-                GameManager.onWin?.Invoke();
+                GameManager.onLose?.Invoke();
 
             base.OnCollision(other);
         }
 
         public override void Start()
         {
-            GameManager.onWin += Lose;
+            GameManager.onLose += Lose;
             base.Start();
         }
 
