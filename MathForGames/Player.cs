@@ -14,7 +14,7 @@ namespace MathForGames
     {
         private float _speed = 1;
         private Sprite _sprite;
-        private bool _canShoot = true;
+
 
         public float Speed
         {

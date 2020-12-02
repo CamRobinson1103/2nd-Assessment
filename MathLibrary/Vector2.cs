@@ -69,8 +69,9 @@ namespace MathLibrary
         public static Vector2 Normalize(Vector2 vector)
         {
             if (vector.Magnitude == 0)
+            {
                 return new Vector2();
-
+            }
             return vector / vector.Magnitude;
         }
 

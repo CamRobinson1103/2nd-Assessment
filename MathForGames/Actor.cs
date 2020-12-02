@@ -16,6 +16,7 @@ namespace MathForGames
     class Actor
     {
         protected char _icon = ' ';
+        protected Vector2 _position = new Vector2();
         private Vector2 _velocity = new Vector2();
         private Vector2 _acceleration = new Vector2();
         protected Matrix3 _globalTransform = new Matrix3();
@@ -29,7 +30,7 @@ namespace MathForGames
         protected Actor[] _children = new Actor[0];
         protected float _rotationAngle;
         protected float _collisionRadius;
-        private float _maxSpeed = 5;
+
 
         public bool Started { get; private set; }
         public bool Destroy { get; private set; }
@@ -46,6 +47,19 @@ namespace MathForGames
                 LookAt(lookPosition);
             }
         }
+
+        public Vector2 Position
+        {
+            get
+            {
+                return _position;
+            }
+            set
+            {
+                _position = value;
+            }
+        }
+
 
         public Vector2 WorldPosition
         {

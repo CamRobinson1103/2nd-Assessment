@@ -218,7 +218,6 @@ namespace MathForGames
             enemy3.SetScale(1, 1);
             //Add actors to the scenes
             scene1.AddActor(player);
-            scene1.AddActor(goal);
             scene1.AddActor(sword);
             scene1.AddActor(enemy1);
             scene1.AddActor(enemy2);

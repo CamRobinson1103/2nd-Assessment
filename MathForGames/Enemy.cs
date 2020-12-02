@@ -15,6 +15,7 @@ namespace MathForGames
     {
         private Actor _target;
         private Color _alertColor;
+        private Vector2 _currentPoint;
         private Sprite _sprite;
         private float _speed;
 
@@ -35,6 +36,8 @@ namespace MathForGames
                 _speed = value;
             }
         }
+
+       
 
         /// <param name="x">Position on the x axis</param>
         /// <param name="y">Position on the y axis</param>
@@ -63,6 +66,10 @@ namespace MathForGames
 
         }
 
+       
+
+        
+
         /// <summary>
         /// Checks to see if the target is within the given angle
         /// and within the given distance. Returns false if no
@@ -79,7 +86,7 @@ namespace MathForGames
                 return false;
 
             //Find the vector representing the distance between the actor and its target
-            Vector2 direction = Target.LocalPosition - LocalPosition;
+            Vector2 direction = Target.LocalPosition - WorldPosition;
             //Get the magnitude of the distance vector
             float distance = direction.Magnitude;
             //Use the inverse cosine to find the angle of the dot product in radians
@@ -91,6 +98,10 @@ namespace MathForGames
 
             return false;
         }
+
+
+        
+
 
         public override void OnCollision(Actor other)
         {
@@ -125,7 +136,11 @@ namespace MathForGames
             {
                 _rayColor = Color.BLUE;
             }
+            Acceleration = new Vector2();
+            Velocity = Velocity.Normalized * Speed;
+
             base.Update(deltaTime);
+
         }
 
         public override void Draw()
