@@ -8,9 +8,11 @@ using Raylib_cs;
 
 namespace MathForGames
 {
-    class Game
+    /// <summary>
+    /// Handles all logic for managing the application.
+    /// </summary>
+    class Engine
     {
-        private static bool _gameOver = false;
         private static Scene[] _scenes;
         private static int _currentSceneIndex;
         public static int CurrentSceneIndex
@@ -22,16 +24,6 @@ namespace MathForGames
         }
 
         public static ConsoleColor DefaultColor { get; set; } = ConsoleColor.White;
-
-        /// <summary>
-        /// Used to set the value of game over.
-        /// </summary>
-        /// <param name="value">If this value is true, the game will end</param>
-        public static void SetGameOver(bool value)
-        {
-            _gameOver = value;
-        }
-
 
         /// <summary>
         /// Returns the scene at the index given.
@@ -46,7 +38,6 @@ namespace MathForGames
 
             return _scenes[index];
         }
-
 
         /// <summary>
         /// Returns the scene that is at the index of the 
@@ -149,7 +140,6 @@ namespace MathForGames
             _currentSceneIndex = index;
         }
 
-
         /// <summary>
         /// Returns true while a key is being pressed
         /// </summary>
@@ -159,7 +149,6 @@ namespace MathForGames
         {
             return Raylib.IsKeyDown((KeyboardKey)key);
         }
-
 
         /// <summary>
         /// Returns true while if key was pressed once
@@ -171,12 +160,14 @@ namespace MathForGames
             return Raylib.IsKeyPressed((KeyboardKey)key);
         }
 
-        public Game()
+        public Engine()
         {
             _scenes = new Scene[0];
         }
 
-        //Called when the game begins. Use this for initialization.
+        /// <summary>
+        /// Called when the game begins. Use this for initialization.
+        /// </summary>
         public void Start()
         {
             //Creates a new window for raylib
@@ -193,23 +184,17 @@ namespace MathForGames
 
             //Create the actors to add to our scene
             Goal actor = new Goal(10, 20, Color.GREEN, '■', ConsoleColor.Green);
-            Enemy enemy = new Enemy(1, 1, Color.GREEN, '■', ConsoleColor.Green);
-            Player player = new Player(1, 1, Color.BLUE, '@', ConsoleColor.Red);
-            Bullet bullet = new Bullet(1, 1, Color.BLUE, '@', ConsoleColor.Red);
+            Enemy enemy = new Enemy(10, 10, Color.GREEN, '■');
+            Player player = new Player(0, 1, Color.BLUE, '@');
 
+            //Sets actors starting values
             enemy.Target = player;
-            player.Speed = 5;
             enemy.SetTranslation(new Vector2(5, 0));
-            player.SetTranslation(new Vector2(5, 0));
-            player.AddChild(enemy);
+            player.Speed = 5;
 
-            //player.SetRotation(1);
-            player.SetScale(1, 1);
-            enemy.SetScale(1, 1);
             //Add actors to the scenes
             scene1.AddActor(player);
             scene1.AddActor(actor);
-            scene1.AddActor(bullet);
             scene1.AddActor(enemy);
             scene2.AddActor(player);
 
@@ -222,8 +207,6 @@ namespace MathForGames
             SetCurrentScene(startingSceneIndex);
         }
 
-
-
         /// <summary>
         /// Called every frame
         /// </summary>
@@ -234,10 +217,11 @@ namespace MathForGames
                 _scenes[_currentSceneIndex].Start();
 
             _scenes[_currentSceneIndex].Update(deltaTime);
-
         }
 
-        //Used to display objects and other info on the screen.
+        /// <summary>
+        /// Used to display objects and other info on the screen.
+        /// </summary>
         public void Draw()
         {
             Raylib.BeginDrawing();
@@ -249,16 +233,18 @@ namespace MathForGames
             Raylib.EndDrawing();
         }
 
-
-        //Called when the game ends.
+        /// <summary>
+        /// Called when the game ends.
+        /// </summary>
         public void End()
         {
             if (_scenes[_currentSceneIndex].Started)
                 _scenes[_currentSceneIndex].End();
         }
 
-
-        //Handles all of the main game logic including the main game loop.
+        /// <summary>
+        /// Handles all of the main game logic including the main game loop.
+        /// </summary>
         public void Run()
         {
             //Call start for all objects in game
