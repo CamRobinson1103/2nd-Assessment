@@ -31,10 +31,8 @@ namespace MathForGames
             : base(x, y, icon, color)
         {
 
-            _sprite = new Sprite("Images/tankBlue_outline.png");
-            _collisionRadius = 5;
-
             _sprite = new Sprite("Images/FemalePerson.png");
+            _collisionRadius = 1;
 
         }
 
@@ -46,11 +44,8 @@ namespace MathForGames
         public Enemy(float x, float y, Color rayColor, char icon = ' ', ConsoleColor color = ConsoleColor.White)
             : base(x, y, rayColor, icon, color)
         {
-
-            _sprite = new Sprite("Images/tankBlue_outline.png");
-            _collisionRadius = 5;
-
             _sprite = new Sprite("Images/FemalePerson.png");
+            _collisionRadius = 1;
             _alertColor = Color.RED;
 
         }
@@ -84,6 +79,27 @@ namespace MathForGames
             return false;
         }
 
+        public override void OnCollision(Actor other)
+        {
+            if (other is Player)
+                GameManager.onWin?.Invoke();
+            if (other is Sword)
+                GameManager.onWin?.Invoke();
+
+            base.OnCollision(other);
+        }
+
+        public override void Start()
+        {
+            GameManager.onWin += Lose;
+            base.Start();
+        }
+
+        private void Lose()
+        {
+            Raylib.DrawText("You Lose!!\nTry Again!", 100, 100, 100, Color.RED);
+        }
+
         public override void Update(float deltaTime)
         {
             //If the target can be seen change the color to red
@@ -102,6 +118,7 @@ namespace MathForGames
         public override void Draw()
         {
             _sprite.Draw(_globalTransform);
+            Raylib.DrawCircle((int)(WorldPosition.X * 32), (int)(WorldPosition.Y * 32), _collisionRadius * 32, _rayColor);
             base.Draw();
         }
     }

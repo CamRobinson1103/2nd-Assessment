@@ -13,12 +13,12 @@ namespace MathForGames
     {
         public Goal(float x, float y, char icon = ' ', ConsoleColor color = ConsoleColor.White) : base(x, y, icon, color)
         {
-            _collisionRadius = 5;
+            _collisionRadius = 3;
         }
 
         public Goal(float x, float y, Color rayColor, char icon = ' ', ConsoleColor color = ConsoleColor.White) : base(x, y, rayColor, icon, color)
         {
-            _collisionRadius = 5;
+            _collisionRadius = 3;
         }
 
         public override void Draw()
@@ -33,13 +33,14 @@ namespace MathForGames
             base.End();
         }
 
-        public override bool OnCollision(Actor other)
+        public override void OnCollision(Actor other)
         {
             if (other is Player)
                 GameManager.onWin?.Invoke();
-            return false;
+            if (other is Sword)
+                GameManager.onWin?.Invoke();
 
-            base.OnCollision(other);
+              base.OnCollision(other);
         }
 
         public override void Start()

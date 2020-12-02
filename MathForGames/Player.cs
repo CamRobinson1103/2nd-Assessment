@@ -35,7 +35,7 @@ namespace MathForGames
         public Player(float x, float y, char icon = ' ', ConsoleColor color = ConsoleColor.White)
             : base(x, y, icon, color)
         {
-            _sprite = new Sprite("Images/barrelBlue.png");
+            _sprite = new Sprite("Images/maleAdventure.png");
         }
 
         /// <param name="x">Position on the x axis</param>
@@ -46,13 +46,10 @@ namespace MathForGames
         public Player(float x, float y, Color rayColor, char icon = ' ', ConsoleColor color = ConsoleColor.White)
             : base(x, y, rayColor, icon, color)
         {
-            _sprite = new Sprite("Images/barrelBlue.png");
+            _sprite = new Sprite("Images/maleAdventure.png");
         }
 
-        private void Bullet()
-        {
-            
-        }
+       
 
         public override void Update(float deltaTime)
         {
@@ -62,10 +59,7 @@ namespace MathForGames
             int yDirection = -Convert.ToInt32(Game.GetKeyDown((int)KeyboardKey.KEY_W))
                 + Convert.ToInt32(Game.GetKeyDown((int)KeyboardKey.KEY_S));
 
-            if (Raylib.IsKeyPressed(KeyboardKey.KEY_SPACE))
-            {
-                Bullet();
-            }
+            
 
 
             //Set the actors current velocity to be the a vector with the direction found scaled by the speed
@@ -83,3 +77,22 @@ namespace MathForGames
         }
     }
 }
+
+////Get the point maxAngle distance along a circle where radius = maxDistance
+//Vector2 topPosition = new Vector2(
+//    (float)(_position.X + maxDistance * Math.Cos(-maxAngle)),
+//    (float)(_position.Y + maxDistance * Math.Sin(-maxAngle)));
+
+////Get the point -maxAngle distance along a circle where radius = maxDistance
+//Vector2 bottomPosition = new Vector2(
+//   (float)(_position.X + maxDistance * Math.Cos(maxAngle)),
+//    (float)(_position.Y + maxDistance * Math.Sin(maxAngle)));
+
+//// Draw partial circle
+/// Raylib.DrawCircleSector(
+//new System.Numerics.Vector2(_position.X* 32, _position.Y* 32),
+//                maxDistance* 32,
+//                (int) ((180 / Math.PI) * -maxAngle) + 90,
+//                (int) ((180 / Math.PI) * maxAngle) + 90,
+//                10,
+//                Color.GREEN);

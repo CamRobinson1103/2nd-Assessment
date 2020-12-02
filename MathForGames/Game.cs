@@ -193,23 +193,23 @@ namespace MathForGames
 
             //Create the actors to add to our scene
             Goal actor = new Goal(10, 20, Color.GREEN, '■', ConsoleColor.Green);
-            Enemy enemy = new Enemy(1, 1, Color.GREEN, '■', ConsoleColor.Green);
+            Enemy enemy = new Enemy(20, 20, Color.GREEN, '■', ConsoleColor.Green);
             Player player = new Player(1, 1, Color.BLUE, '@', ConsoleColor.Red);
-            Sword bullet = new Sword(1, 1, Color.BLUE, '@', ConsoleColor.Red);
+            Sword sword = new Sword(1, 1, Color.BLUE, '@', ConsoleColor.Red);
 
             enemy.Target = player;
             player.Speed = 5;
             enemy.SetTranslation(new Vector2(5, 0));
             player.SetTranslation(new Vector2(5, 0));
-            player.AddChild(enemy);
+            player.AddChild(sword);
 
             //player.SetRotation(1);
-            player.SetScale(1, 1);
+            player.SetScale(2, 2);
             enemy.SetScale(1, 1);
             //Add actors to the scenes
             scene1.AddActor(player);
             scene1.AddActor(actor);
-            scene1.AddActor(bullet);
+            scene1.AddActor(sword);
             scene1.AddActor(enemy);
             scene2.AddActor(player);
 

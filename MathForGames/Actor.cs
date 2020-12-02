@@ -228,15 +228,9 @@ namespace MathForGames
         /// USe this to define game logic for this actors collision.
         /// </summary>
         /// <param name="other"></param>
-        public virtual bool OnCollision(Actor other)
+        public virtual void OnCollision(Actor other)
         {
-            if (other.Destroy)
-                return false;
-
-            if (!CheckCollision(other))
-                return false;
-
-            return false;
+            
         }
 
 
