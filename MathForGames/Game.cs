@@ -192,12 +192,12 @@ namespace MathForGames
             Scene scene2 = new Scene();
 
             //Create the actors to add to our scene
-            Goal goal = new Goal(10, 20, Color.GREEN, '■', ConsoleColor.Green);
+            Message message = new Message(10, 20, Color.GREEN, '■', ConsoleColor.Green);
             Enemy enemy1 = new Enemy(20, 20, Color.GREEN, '■', ConsoleColor.Green);
             Enemy enemy2 = new Enemy(25, 25, Color.GREEN, '■', ConsoleColor.Green);
             Enemy enemy3 = new Enemy(30, 30, Color.GREEN, '■', ConsoleColor.Green);
             Player player = new Player(1, 1, Color.BLUE, '@', ConsoleColor.Red);
-            Sword sword = new Sword(1, 1, Color.BLUE, '@', ConsoleColor.Red);
+            Scissors scissors = new Scissors(1, 1, enemy1, enemy2, enemy3, Color.BLUE, '@', ConsoleColor.Red);
 
             enemy1.Target = player;
             enemy1.Speed = 1;
@@ -205,23 +205,24 @@ namespace MathForGames
             enemy3.Speed = 1;
             player.Speed = 5;
             enemy1.SetTranslation(new Vector2(5, 5));
-            enemy2.SetTranslation(new Vector2(10, 10));
-            enemy3.SetTranslation(new Vector2(15, 15));
+            enemy2.SetTranslation(new Vector2(10, 5));
+            enemy3.SetTranslation(new Vector2(15, 5));
             player.SetTranslation(new Vector2(5, 0));
 
-            player.AddChild(sword);
+            player.AddChild(scissors);
 
             //player.SetRotation(1);
             player.SetScale(2, 2);
-            enemy1.SetScale(1, 1);
-            enemy2.SetScale(1, 1);
-            enemy3.SetScale(1, 1);
+            enemy1.SetScale(4, 4);
+            enemy2.SetScale(4, 4);
+            enemy3.SetScale(4, 4);
             //Add actors to the scenes
             scene1.AddActor(player);
-            scene1.AddActor(sword);
+            scene1.AddActor(scissors);
             scene1.AddActor(enemy1);
             scene1.AddActor(enemy2);
             scene1.AddActor(enemy3);
+            scene1.AddActor(message);
             scene2.AddActor(player);
 
             enemy1.Target = player;

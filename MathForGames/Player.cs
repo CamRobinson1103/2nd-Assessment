@@ -14,6 +14,7 @@ namespace MathForGames
     {
         private float _speed = 1;
         private Sprite _sprite;
+        private bool _canMove = true;
 
 
         public float Speed
@@ -36,6 +37,7 @@ namespace MathForGames
             : base(x, y, icon, color)
         {
             _sprite = new Sprite("Images/maleAdventure.png");
+            _collisionRadius = 1; ;
         }
 
         /// <param name="x">Position on the x axis</param>
@@ -47,12 +49,31 @@ namespace MathForGames
             : base(x, y, rayColor, icon, color)
         {
             _sprite = new Sprite("Images/maleAdventure.png");
+            _collisionRadius = 1; ;
         }
 
-       
+
+
+        public void DisableControls()
+        {
+            _canMove = false;
+        }
+
+
+        public override void Start()
+        {
+            
+            GameManager.onWin += DisableControls;
+            base.Start();
+        }
+
+        
 
         public override void Update(float deltaTime)
         {
+            if (!_canMove)
+                return;
+
             //Gets the player's input to determine which direction the actor will move in on each axis 
             int xDirection = -Convert.ToInt32(Game.GetKeyDown((int)KeyboardKey.KEY_A))
                 + Convert.ToInt32(Game.GetKeyDown((int)KeyboardKey.KEY_D));
@@ -78,21 +99,3 @@ namespace MathForGames
     }
 }
 
-////Get the point maxAngle distance along a circle where radius = maxDistance
-//Vector2 topPosition = new Vector2(
-//    (float)(_position.X + maxDistance * Math.Cos(-maxAngle)),
-//    (float)(_position.Y + maxDistance * Math.Sin(-maxAngle)));
-
-////Get the point -maxAngle distance along a circle where radius = maxDistance
-//Vector2 bottomPosition = new Vector2(
-//   (float)(_position.X + maxDistance * Math.Cos(maxAngle)),
-//    (float)(_position.Y + maxDistance * Math.Sin(maxAngle)));
-
-//// Draw partial circle
-/// Raylib.DrawCircleSector(
-//new System.Numerics.Vector2(_position.X* 32, _position.Y* 32),
-//                maxDistance* 32,
-//                (int) ((180 / Math.PI) * -maxAngle) + 90,
-//                (int) ((180 / Math.PI) * maxAngle) + 90,
-//                10,
-//                Color.GREEN);

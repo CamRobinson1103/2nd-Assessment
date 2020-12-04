@@ -183,7 +183,7 @@ namespace MathForGames
             Scene scene2 = new Scene();
 
             //Create the actors to add to our scene
-            Goal actor = new Goal(10, 20, Color.GREEN, '■', ConsoleColor.Green);
+            Message actor = new Message(10, 20, Color.GREEN, '■', ConsoleColor.Green);
             Enemy enemy = new Enemy(10, 10, Color.GREEN, '■');
             Player player = new Player(0, 1, Color.BLUE, '@');
 

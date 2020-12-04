@@ -9,22 +9,22 @@ namespace MathForGames
     /// A goal is an actor that checks if the player has collided with it.
     /// If so the player wins the game.
     /// </summary>
-    class Goal : Actor
+    class Message : Actor
     {
-        public Goal(float x, float y, char icon = ' ', ConsoleColor color = ConsoleColor.White) : base(x, y, icon, color)
+        public Message(float x, float y, char icon = ' ', ConsoleColor color = ConsoleColor.White) : base(x, y, icon, color)
         {
-            _collisionRadius = 3;
+
         }
 
-        public Goal(float x, float y, Color rayColor, char icon = ' ', ConsoleColor color = ConsoleColor.White) : base(x, y, rayColor, icon, color)
+        public Message(float x, float y, Color rayColor, char icon = ' ', ConsoleColor color = ConsoleColor.White) : base(x, y, rayColor, icon, color)
         {
-            _collisionRadius = 3;
+
         }
 
         public override void Draw()
         {
-            Raylib.DrawCircle((int)(WorldPosition.X * 32), (int)(WorldPosition.Y * 32), _collisionRadius * 32, _rayColor);
-            Raylib.DrawText("GOAL", ((int)(WorldPosition.X * 32) - 100), ((int)(WorldPosition.Y * 32) - 75), 100, Color.BLUE);
+
+            Raylib.DrawText("One of these bombs are real! Difuse it!", ((int)(WorldPosition.X * 32) - 100), ((int)(WorldPosition.Y * 32) - 75), 30, Color.BLUE);
             base.Draw();
         }
 
@@ -37,10 +37,10 @@ namespace MathForGames
         {
             if (other is Player)
                 GameManager.onWin?.Invoke();
-            if (other is Sword)
+            if (other is Scissors)
                 GameManager.onWin?.Invoke();
 
-              base.OnCollision(other);
+            base.OnCollision(other);
         }
 
         public override void Start()
@@ -56,7 +56,7 @@ namespace MathForGames
 
         private void DrawWinText()
         {
-            Raylib.DrawText("You Win!!\nPress Esc to quit", 100, 100, 100, Color.BLUE);
+            Raylib.DrawText("Congradulation! The bomb was stopped!!!!\nPress Esc to quit!", 200, 400, 40, Color.BLUE);
         }
     }
 }

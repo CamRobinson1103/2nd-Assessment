@@ -6,25 +6,31 @@ using MathLibrary;
 
 namespace MathForGames
 {
-    class Sword : Actor
+    class Scissors : Actor
     {
         private float _speed = 1;
         private Sprite _sprite;
         private Actor _enemy;
 
-        public Sword(float x, float y, char icon = ' ', Actor enemy, ConsoleColor color = ConsoleColor.White)
+        public Scissors(float x, float y, Actor enemy1, Actor enemy2, Actor enemy3, char icon = ' ',  ConsoleColor color = ConsoleColor.White)
            : base(x, y, icon, color)
         {
-            _enemy = enemy;
-            _sprite = new Sprite("Images/sword.png");
+            _enemy = enemy1;
+            _enemy = enemy2;
+            _enemy = enemy3;
+            _collisionRadius = 1; ;
+            _sprite = new Sprite("Images/scissors.png");
 
         }
 
-        public Sword(float x, float y, Color rayColor, char icon = ' ', Actor enemy, ConsoleColor color = ConsoleColor.White)
+        public Scissors(float x, float y, Actor enemy1, Actor enemy2, Actor enemy3, Color rayColor, char icon = ' ',  ConsoleColor color = ConsoleColor.White)
            : base(x, y, rayColor, icon, color)
         {
-            _sprite = new Sprite("Images/sword.png");
-            _enemy = enemy;
+            _sprite = new Sprite("Images/scissors.png");
+            _enemy = enemy1;
+            _enemy = enemy2;
+            _enemy = enemy3;
+            _collisionRadius = 1; ;
         }
 
         private bool CheckPlayerDistance()

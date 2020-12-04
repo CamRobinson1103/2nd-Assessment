@@ -47,7 +47,7 @@ namespace MathForGames
             : base(x, y, icon, color)
         {
 
-            _sprite = new Sprite("Images/FemalePerson.png");
+            _sprite = new Sprite("Images/bomb.png");
             _collisionRadius = 1;
 
         }
@@ -60,9 +60,8 @@ namespace MathForGames
         public Enemy(float x, float y, Color rayColor, char icon = ' ', ConsoleColor color = ConsoleColor.White)
             : base(x, y, rayColor, icon, color)
         {
-            _sprite = new Sprite("Images/FemalePerson.png");
-            _collisionRadius = 1;
-            _alertColor = Color.RED;
+            _sprite = new Sprite("Images/bomb.png");
+            _collisionRadius = 1;;
 
         }
 
@@ -106,22 +105,22 @@ namespace MathForGames
         public override void OnCollision(Actor other)
         {
             if (other is Player)
-                GameManager.onLose?.Invoke();
-            if (other is Sword)
-                GameManager.onLose?.Invoke();
+                GameManager.onWin?.Invoke();
+            if (other is Scissors)
+                GameManager.onWin?.Invoke();
 
             base.OnCollision(other);
         }
 
         public override void Start()
         {
-            GameManager.onLose += Lose;
+            GameManager.onLose += Win;
             base.Start();
         }
 
-        private void Lose()
+        private void Win()
         {
-            Raylib.DrawText("You Lose!!\nTry Again!", 100, 100, 100, Color.RED);
+            Raylib.DrawText("Congradulation! The bomb was stopped!!!!\nPress Esc to quit!", 150, 150, 100, Color.BLUE);
         }
 
         public override void Update(float deltaTime)
@@ -146,7 +145,6 @@ namespace MathForGames
         public override void Draw()
         {
             _sprite.Draw(_globalTransform);
-            Raylib.DrawCircle((int)(WorldPosition.X * 32), (int)(WorldPosition.Y * 32), _collisionRadius * 32, _rayColor);
             base.Draw();
         }
     }
