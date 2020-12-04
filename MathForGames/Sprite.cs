@@ -37,7 +37,7 @@ namespace MathForGames
         }
 
         /// <summary>
-        /// Loads the given texture
+        /// Sprite(Texture2D texture)
         /// </summary>
         /// <param name="texture">Sets the sprites image to be the given texture</param>
         public Sprite(Texture2D texture)
